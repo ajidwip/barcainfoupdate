@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header id="header">
 
   <ion-navbar color="bluedark">
     <ion-title>Video</ion-title>
@@ -50,8 +50,34 @@
 
   </div>
   <ion-fab bottom right>
-    <button color="bluedark" ion-fab>
+    <button color="bluedark" ion-fab (click)="doAddVideos()">
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
 </ion-content>
+
+<div id="myVideos" class="modal">
+    <div class="modal-content">
+      <div>
+        <b>ADD VIDEO</b>
+        <span class="closeModal" (click)="doCloseAddVideos()">&times;</span>
+      </div>
+      <form [formGroup]="myFormVideos">
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Title</ion-label>
+          <ion-input formControlName="title" style="border:1px solid;border-color:#eeeeee;padding-left:5px;" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Image Url Thumb</ion-label>
+          <ion-input formControlName="imageurlthumb" style="border:1px solid;border-color:#eeeeee;padding-left:5px;" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Video Url</ion-label>
+          <ion-input formControlName="videourl" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-buttons end padding>
+          <button ion-button color="bluedark" (click)="doSaveVideos();" [disabled]="!myFormVideos.valid">Save</button>
+        </ion-buttons>
+      </form>
+    </div>
+  </div>

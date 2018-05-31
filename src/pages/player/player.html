@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header id="header">
 
   <ion-navbar color="bluedark">
     <ion-title>Pemain</ion-title>
@@ -50,8 +50,49 @@
   
     </div>
   <ion-fab bottom right>
-    <button color="bluedark" ion-fab>
+    <button color="bluedark" ion-fab (click)="doAddPlayers()">
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
 </ion-content>
+
+<div id="myPlayers" class="modal">
+    <div class="modal-content">
+      <div>
+        <b>ADD PLAYERS</b>
+        <span class="closeModal" (click)="doCloseAddPlayers()">&times;</span>
+      </div>
+      <form [formGroup]="myFormPlayers">
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Position Group</ion-label>
+          <ion-select formControlName="positiongroup" style="border:1px solid;border-color:#eeeeee;padding-left:5px;">
+            <ion-option value="PLAYER">Player</ion-option>
+            <ion-option value="STAFF">Staff</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Name</ion-label>
+          <ion-input formControlName="name" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">number</ion-label>
+          <ion-input formControlName="number" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Position</ion-label>
+          <ion-input formControlName="position" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Season</ion-label>
+          <ion-input formControlName="season" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">IMG URL</ion-label>
+          <ion-input formControlName="imgurl" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-buttons end padding>
+          <button ion-button color="bluedark" (click)="doSavePlayers();" [disabled]="!myFormPlayers.valid">Save</button>
+        </ion-buttons>
+      </form>
+    </div>
+  </div>

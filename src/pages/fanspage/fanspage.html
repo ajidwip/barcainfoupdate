@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header id="header">
 
   <ion-navbar color="reddark">
     <ion-title>Fanspage</ion-title>
@@ -50,8 +50,45 @@
   
     </div>
   <ion-fab bottom right>
-    <button color="reddark" ion-fab>
+    <button color="reddark" ion-fab (click)="doAddFansPage()">
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
 </ion-content>
+
+<div id="myFansPage" class="modal">
+    <div class="modal-content">
+      <div>
+        <b>ADD FANS PAGE</b>
+        <span class="closeModal" (click)="doCloseAddFansPage()">&times;</span>
+      </div>
+      <form [formGroup]="myFormFansPage">
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Fans Page</ion-label>
+          <ion-select formControlName="fanspage" style="border:1px solid;border-color:#eeeeee;padding-left:5px;">
+            <ion-option value="FACEBOOK">Facebook</ion-option>
+            <ion-option value="INSTAGRAM">Instagram</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Name</ion-label>
+          <ion-input formControlName="name" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Alias</ion-label>
+          <ion-input formControlName="alias" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Icon URL</ion-label>
+          <ion-input formControlName="iconurl" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Page URL</ion-label>
+          <ion-input formControlName="pageurl" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-buttons end padding>
+          <button ion-button color="bluedark" (click)="doSaveFansPage();" [disabled]="!myFormFansPage.valid">Save</button>
+        </ion-buttons>
+      </form>
+    </div>
+  </div>
