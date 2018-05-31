@@ -1,14 +1,38 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content style="background: #a50044;">
+  <ion-grid>
+    <ion-row>
+      <ion-col padding style="background:#a50044;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-12 (click)="doGoToPage('NewsPage')">
+        <ion-icon item-start name="ios-paper" style="font-size:40px;"></ion-icon>
+        <h5>BERITA</h5>
+      </ion-col>
+      <ion-col padding style="background:#a50044;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-4 (click)="doGoToPage('PhotoPage')">
+        <ion-icon item-start name="md-photos" style="font-size:40px;"></ion-icon>
+        <h5>FOTO</h5>
+      </ion-col>
+      <ion-col padding style="background:#004c97;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-8 (click)="doGoToPage('VideoPage')">
+        <ion-icon item-start name="md-videocam" style="font-size:38px;"></ion-icon>
+        <h5>VIDEO</h5>
+      </ion-col>
+      <ion-col padding style="background:#004c97;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-6 (click)="doGoToPage('SchedulePage')">
+        <ion-icon item-start name="md-calendar" style="font-size:38px;"></ion-icon>
+        <h5>JADWAL</h5>
+      </ion-col>
+      <ion-col padding style="background:#a50044;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-6 (click)="doGoToPage('NobarPage')">
+        <ion-icon item-start name="md-contacts" style="font-size:38px;"></ion-icon>
+        <h5>NOBAR</h5>
+      </ion-col>
+      <ion-col padding style="background:#004c97;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-12 (click)="doGoToPage('PlayerPage')">
+        <ion-icon item-start name="md-people" style="font-size:38px;"></ion-icon>
+        <h5>PEMAIN</h5>
+      </ion-col>
+      <ion-col padding style="background:#a50044;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-8 (click)="doGoToPage('FanspagePage')">
+        <ion-icon item-start name="logo-facebook" style="font-size:38px;"></ion-icon>
+        <h5>FANSPAGE</h5>
+      </ion-col>
+      <ion-col padding style="background:#004c97;border:2px solid;border-color:#7b7b7b;text-align:center;color:#ffffff;" col-4 (click)="doGoToPage('ResultsPage')">
+        <ion-icon item-start name="md-game-controller-b" style="font-size:38px;"></ion-icon>
+        <h5>HASIL</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

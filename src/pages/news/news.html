@@ -1,0 +1,87 @@
+<ion-header id="header">
+
+  <ion-navbar color="reddark">
+    <ion-title>Berita</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="status">
+    <ion-segment-button value="verifikasi">
+      Verifikasi
+    </ion-segment-button>
+    <ion-segment-button value="open">
+      Open
+    </ion-segment-button>
+    <ion-segment-button value="clsd">
+      Clsd
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="status">
+
+    <div *ngSwitchCase="'verifikasi'">
+      <ion-card padding *ngFor="let verifikasi of newsverifikasi">
+        <h5>
+          <strong>{{verifikasi.title}}</strong>
+        </h5>
+        <ion-note>{{verifikasi.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'open'">
+      <ion-card padding *ngFor="let open of newsopen">
+        <h5>
+          <strong>{{open.title}}</strong>
+        </h5>
+        <ion-note>{{open.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'clsd'">
+      <ion-card padding *ngFor="let clsd of newsclsd">
+        <h5>
+          <strong>{{clsd.title}}</strong>
+        </h5>
+        <ion-note>{{clsd.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+  </div>
+  <ion-fab bottom right>
+    <button color="reddark" ion-fab (click)="doAddNews()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+
+<div id="myNews" class="modal">
+  <div class="modal-content">
+    <div>
+      <b>ADD NEWS</b>
+      <span class="closeModal" (click)="doCloseAddNews()">&times;</span>
+    </div>
+    <form [formGroup]="myFormNews">
+      <ion-item>
+        <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Title</ion-label>
+        <ion-input formControlName="title" style="border:1px solid;border-color:#eeeeee;padding-left:5px;" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Description</ion-label>
+        <ion-textarea formControlName="description" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Image Url</ion-label>
+        <ion-input formControlName="imageurl" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Sumber</ion-label>
+        <ion-input formControlName="sumber" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+      </ion-item>
+      <ion-buttons end padding>
+        <button ion-button color="bluedark" (click)="doSaveNews();" [disabled]="!myFormNews.valid">Save</button>
+      </ion-buttons>
+    </form>
+  </div>
+</div>

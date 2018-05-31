@@ -1,0 +1,113 @@
+<ion-header id="header">
+
+  <ion-navbar color="reddark">
+    <ion-title>Foto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="status">
+    <ion-segment-button value="verifikasi">
+      Verifikasi
+    </ion-segment-button>
+    <ion-segment-button value="open">
+      Open
+    </ion-segment-button>
+    <ion-segment-button value="clsd">
+      Clsd
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="status">
+
+      <div *ngSwitchCase="'verifikasi'">
+        <ion-card padding *ngFor="let verifikasi of photoverifikasi">
+          <h5>
+            <strong>{{verifikasi.title}}</strong>
+          </h5>
+          <ion-note>{{verifikasi.date | date: 'dd MMMM yyyy'}}</ion-note>
+        </ion-card>
+      </div>
+  
+      <div *ngSwitchCase="'open'">
+        <ion-card padding *ngFor="let open of photoopen">
+          <h5>
+            <strong>{{open.title}}</strong>
+          </h5>
+          <ion-note>{{open.date | date: 'dd MMMM yyyy'}}</ion-note>
+        </ion-card>
+      </div>
+  
+      <div *ngSwitchCase="'clsd'">
+        <ion-card padding *ngFor="let clsd of photoclsd">
+          <h5>
+            <strong>{{clsd.title}}</strong>
+          </h5>
+          <ion-note>{{clsd.date | date: 'dd MMMM yyyy'}}</ion-note>
+        </ion-card>
+      </div>
+  
+    </div>
+  <ion-fab bottom right>
+    <button color="reddark" ion-fab (click)="doAddGallery()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+
+<div id="myGallery" class="modal">
+    <div class="modal-content">
+      <div>
+        <b>ADD GALLERY</b>
+        <span class="closeModal" (click)="doCloseAddGallery()">&times;</span>
+      </div>
+      <form [formGroup]="myFormGallery">
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Title</ion-label>
+          <ion-input formControlName="title" style="border:1px solid;border-color:#eeeeee;padding-left:5px;" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Image Url Thumb</ion-label>
+          <ion-input formControlName="imageurl" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-card style="width:98%;">
+          <ion-item>
+            <ion-label color="primary" stacked>Add Url Photos</ion-label>
+            <ion-input formControlName="url" type="text" placeholder="Input Url"></ion-input>
+            <button item-end ion-button clear color="greenlake" (click)="doAddphotos()">
+              <ion-icon name="md-add" style="font-size:20px;"></ion-icon>
+            </button>
+          </ion-item>
+        </ion-card>
+        <ion-card style="width:98%;">
+          <div style="border-top:1px solid;border-color:#dedede;background:#ffffff;">
+            <div padding style="font-weight:bold;">
+              List Photos
+            </div>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-12 style="border-top:1px solid;border-color:#dedede;">
+                  <ion-row>
+                    <ion-col col-3>Title</ion-col>
+                    <ion-col col-7>Image Url</ion-col>
+                    <ion-col col-2>Date</ion-col>
+                  </ion-row>
+                </ion-col>
+                <ion-col *ngFor="let foto of photos" col-12 style="border-top:1px solid;border-color:#dedede;">
+                  <ion-row>
+                    <ion-col col-4 style="border-right:1px solid;border-top:0px;border-left:0px;border-color:#dedede">{{foto.title}}</ion-col>
+                    <ion-col col-5 style="border-right:1px solid;border-top:0px;border-left:0px;border-color:#dedede">{{foto.image_url}}</ion-col>
+                    <ion-col col-2 style="border-right:1px solid;border-top:0px;border-left:0px;border-color:#dedede">{{foto.date}}</ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-card>
+        <ion-buttons end padding>
+          <button ion-button color="bluedark" (click)="doSaveGallery();" [disabled]="!myFormGallery.valid">Save</button>
+        </ion-buttons>
+      </form>
+    </div>
+  </div>

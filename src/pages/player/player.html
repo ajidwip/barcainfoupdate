@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar color="bluedark">
+    <ion-title>Pemain</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="club">
+    <ion-segment-button value="barca">
+      Barca
+    </ion-segment-button>
+    <ion-segment-button value="spain">
+      Spain
+    </ion-segment-button>
+    <ion-segment-button value="argentina">
+      Argentina
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="club">
+
+      <div *ngSwitchCase="'barca'">
+        <ion-card padding *ngFor="let barca of playersbarca">
+          <h5>
+            <strong>{{barca.name}}</strong>
+          </h5>
+          <ion-note>Season: {{barca.season}} Number: {{barca.number}}</ion-note>
+        </ion-card>
+      </div>
+  
+      <div *ngSwitchCase="'spain'">
+        <ion-card padding *ngFor="let spain of playersspain">
+          <h5>
+            <strong>{{spain.name}}</strong>
+          </h5>
+          <ion-note>Season: {{spain.season}} Number: {{spain.number}}</ion-note>
+        </ion-card>
+      </div>
+  
+      <div *ngSwitchCase="'argentina'">
+        <ion-card padding *ngFor="let argentina of playersaargentina">
+          <h5>
+            <strong>{{argentina.name}}</strong>
+          </h5>
+          <ion-note>Season: {{argentina.season}} Number: {{argentina.number}}</ion-note>
+        </ion-card>
+      </div>
+  
+    </div>
+  <ion-fab bottom right>
+    <button color="bluedark" ion-fab>
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

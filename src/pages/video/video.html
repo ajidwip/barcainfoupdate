@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar color="bluedark">
+    <ion-title>Video</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="status">
+    <ion-segment-button value="verifikasi">
+      Verifikasi
+    </ion-segment-button>
+    <ion-segment-button value="open">
+      Open
+    </ion-segment-button>
+    <ion-segment-button value="clsd">
+      Clsd
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="status">
+
+    <div *ngSwitchCase="'verifikasi'">
+      <ion-card padding *ngFor="let verifikasi of videoverifikasi">
+        <h5>
+          <strong>{{verifikasi.title}}</strong>
+        </h5>
+        <ion-note>{{verifikasi.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'open'">
+      <ion-card padding *ngFor="let open of videoopen">
+        <h5>
+          <strong>{{open.title}}</strong>
+        </h5>
+        <ion-note>{{open.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'clsd'">
+      <ion-card padding *ngFor="let clsd of videoclsd">
+        <h5>
+          <strong>{{clsd.title}}</strong>
+        </h5>
+        <ion-note>{{clsd.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+  </div>
+  <ion-fab bottom right>
+    <button color="bluedark" ion-fab>
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
