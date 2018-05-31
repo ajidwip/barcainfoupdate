@@ -18,6 +18,8 @@ export class SchedulePage {
   public scheduleclsd = [];
   public nextno: any;
   public uuid = '';
+  public Clubs = [];
+  public TotalClubs: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,6 +36,7 @@ export class SchedulePage {
       place: ['', Validators.compose([Validators.required])],
       date: ['', Validators.compose([Validators.required])]
     })
+    this.doGetClub();
     this.doGetScheduleVerifikasi();
     this.doGetScheduleOpen();
     this.doGetScheduleClsd();
@@ -55,6 +58,13 @@ export class SchedulePage {
     this.api.get('table/z_schedule', { params: { limit: 1000, filter: "status='CLSD'", sort: "date DESC " } })
       .subscribe(val => {
         this.scheduleclsd = val['data'];
+      });
+  }
+  doGetClub() {
+    this.api.get('table/z_club', { params: { limit: 100 } })
+      .subscribe(val => {
+        this.Clubs = val['data'];
+        this.TotalClubs = val['count']
       });
   }
   doAddSchedule() {

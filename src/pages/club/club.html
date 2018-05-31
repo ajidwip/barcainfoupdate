@@ -1,0 +1,100 @@
+<ion-header id="header">
+
+  <ion-navbar color="reddark">
+    <ion-title>Clubs</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="status">
+    <ion-segment-button value="verifikasi">
+      Verifikasi
+    </ion-segment-button>
+    <ion-segment-button value="open">
+      Open
+    </ion-segment-button>
+    <ion-segment-button value="clsd">
+      Clsd
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="status">
+
+    <div *ngSwitchCase="'verifikasi'">
+      <ion-card padding *ngFor="let verifikasi of clubsverifikasi">
+        <h5>
+          <strong>{{verifikasi.name}}</strong>
+        </h5>
+        <ion-note>{{verifikasi.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'open'">
+      <ion-card padding *ngFor="let open of clubsopen">
+        <h5>
+          <strong>{{open.name}}</strong>
+        </h5>
+        <ion-note>{{open.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'clsd'">
+      <ion-card padding *ngFor="let clsd of clubsclsd">
+        <h5>
+          <strong>{{clsd.name}}</strong>
+        </h5>
+        <ion-note>{{clsd.date | date: 'dd MMMM yyyy'}}</ion-note>
+      </ion-card>
+    </div>
+
+  </div>
+  <ion-fab bottom right>
+    <button color="reddark" ion-fab (click)="doAddClub()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+
+<div id="myClub" class="modal">
+    <div class="modal-content">
+      <div>
+        <b>ADD CLUB</b>
+        <span class="closeModal" (click)="doCloseAddClub()">&times;</span>
+      </div>
+      <form [formGroup]="myFormClub">
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Nation</ion-label>
+          <ion-select formControlName="nation" style="border:1px solid;border-color:#eeeeee;padding-left:5px;">
+            <ion-option value="SPAIN">Spain</ion-option>
+            <ion-option value="ENGLISH">English</ion-option>
+            <ion-option value="GERMAN">German</ion-option>
+            <ion-option value="FRANCE">France</ion-option>
+            <ion-option value="ITALIA">Italia</ion-option>
+            <ion-option value="NETHERLAND">Netherland</ion-option>
+            <ion-option value="PORTUGAL">Portugal</ion-option>
+            <ion-option value="LAINNYA">Lainnya</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Club Name</ion-label>
+          <ion-input formControlName="clubname" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;" (ionChange)="changename()"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Alias</ion-label>
+          <ion-input formControlName="alias" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Stadion</ion-label>
+          <ion-input formControlName="stadion" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked style="font-weight:bold;margin-bottom:5px;">Icon URL</ion-label>
+          <ion-input formControlName="iconurl" type="text" style="border:1px solid;border-color:#eeeeee;padding-left:5px;"></ion-input>
+        </ion-item>
+        <ion-buttons end padding>
+          <button ion-button color="bluedark" (click)="doSaveClub();" [disabled]="!myFormClub.valid">Save</button>
+        </ion-buttons>
+      </form>
+    </div>
+  </div>
